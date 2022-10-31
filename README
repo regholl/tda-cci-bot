@@ -1,0 +1,36 @@
+Description:
+
+This bot is designed to run a trading strategy on TD Ameritrade, and control settings with the Dash web framework.
+
+File Structure:
+
+apps
+    __init__.py
+    home.py
+    orders.py
+    positions.py
+.env
+.gitignore
+app.py
+db.py
+Procfile
+README
+requirements.txt
+runtime.txt
+script.py
+TDA_CCI_Bot.ipynb
+tda.py
+ThinkScript_CCI.txt
+
+Deta Bases:
+
+db_config
+db_tickers
+db_users
+
+Contact Info:
+
+Tyler Potts
+https://www.upwork.com/freelancers/~017b47f3ae680d2ef7
+https://www.linkedin.com/in/tyler-potts-022b6573/
+twpotts11@gmail.com

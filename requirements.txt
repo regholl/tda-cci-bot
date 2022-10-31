@@ -1,0 +1,13 @@
+dash
+dash_auth
+dash_bootstrap_components
+datetime
+deta
+gunicorn
+numpy
+pandas
+plotly
+python-dotenv
+pytz
+requests
+ta
