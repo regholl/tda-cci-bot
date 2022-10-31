@@ -30,8 +30,8 @@ app = Dash(
     ],
     external_stylesheets=[dbc.themes.BOOTSTRAP]
 )
-server = app.server
 app.title = "TDA CCI Bot"
+server = app.server
 
 def serve_layout():
 
