@@ -77,6 +77,11 @@ def serve_layout():
             html.Div(
                 id = 'page-content', 
                 children = []
+            ),
+            dcc.Interval(
+                id = "interval", 
+                interval = 5 * 1000,
+                n_intervals = 0
             )
         ],
         style = {
@@ -89,9 +94,13 @@ app.layout = serve_layout
 
 # Define the multi-page callback function
 
-@app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
-def display_page(pathname):
+@app.callback(
+    Output(component_id='page-content', component_property='children'),
+    [Input(component_id='url', component_property='pathname'),
+    Input(component_id='interval', component_property='n_intervals')],
+    prevent_initial_callbacks=False
+)
+def display_page(pathname, n_intervals):
     if pathname == "/home":
         return serve_home()
     elif pathname == "/orders":

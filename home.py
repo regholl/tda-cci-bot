@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from db import *
 from tda import *
 
-# Define page functino
+# Define page function
 
 def serve_home():
 
