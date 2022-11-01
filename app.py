@@ -61,7 +61,7 @@ def serve_layout():
         children = [
             dcc.Location(
                 id = 'url', 
-                pathname = "/home"
+                pathname = ""
             ),
             dbc.NavbarSimple(
                 children = [
@@ -99,7 +99,7 @@ def display_page(pathname):
     elif pathname == "/positions":
         return serve_positions()
     else:
-        return "Error"
+        return serve_home()
 
 # Callback function for timeframe on home.py
 

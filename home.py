@@ -152,7 +152,7 @@ def serve_home():
                                 max = 10000
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
                     ),
                     dbc.Col(
                         children = [
@@ -165,7 +165,7 @@ def serve_home():
                                 max = 10000
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
                     ),
                     dbc.Col(
                         children = [
