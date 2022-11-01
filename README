@@ -10,7 +10,6 @@ app.py
 db.py
 fly.toml
 home.py
-index.py
 orders.py
 positions.py
 Procfile

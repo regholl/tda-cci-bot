@@ -161,7 +161,7 @@ def serve_home():
     over_sold = db_settings.get("over_sold")['value']
     over_bought = db_settings.get("over_bought")['value']
 
-    figs = update_candlestick()
+    figs = update_candlestick(timeframe, ticker, cciLength, cciAvgLength, over_sold, over_bought)
     fig1 = figs[0]
     fig2 = figs[1]
 
