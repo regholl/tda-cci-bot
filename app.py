@@ -77,10 +77,6 @@ def serve_layout():
             html.Div(
                 id = 'page-content', 
                 children = []
-            ),
-            html.H6(
-                id = 'last_update',
-                children = [f"Last update: {dt.datetime.now().strftime('%m/%d/%Y %X %Z')}"]
             )
         ],
         style = {
@@ -355,4 +351,4 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
 # Run the app
 
 if __name__ == '__main__':
-    app.run_server(port=8080, debug=True)
+    app.run_server(port=8080, debug=False)
