@@ -63,8 +63,8 @@ def run():
     elif "h" in timeframe:
         frequencyType = "minute"
         frequency = np.round(int(timeframe.replace("h","")) * 60, 0)
-        periodType = "month"
-        period = 2
+        periodType = "day"
+        period = 10
     elif "D" in timeframe:
         frequencyType = "daily"
         frequency = 1
