@@ -247,7 +247,7 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
         frequency = 1
         periodType = "month"
         period = 3
-    data = get_data_tda(ticker=selected_ticker, periodType = periodType, period = period, frequencyType = frequencyType, frequency = frequency, useEpoch=useEpoch)
+    data = get_data_tda(ticker=selected_ticker, periodType=periodType, period=period, frequencyType=frequencyType, frequency=frequency, useEpoch=useEpoch)
     df = pd.DataFrame()
     if frequencyType == "minute":
         time_format = "%m/%d %H:%M"

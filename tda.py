@@ -116,7 +116,7 @@ def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minut
     auth = tda_authenticate()
     data_url = f"{tda_base}/v1/marketdata/{ticker}/pricehistory?apikey={auth['api_key']}&frequencyType={frequencyType}&frequency={frequency}&needExtendedHoursData={extended_hours}&endDate={endDate}"
     if useEpoch:
-        data_url = data_url + f"&startDate={startDate}&endDate={endDate}"
+        data_url = data_url + f"&startDate={startDate}"
     else:
         data_url = data_url + f"&periodType={periodType}&period={period}"
     req = requests.get(data_url, headers = auth["headers"])

@@ -55,6 +55,7 @@ def run():
 
     # Adjust timeframe
 
+    useEpoch = False
     if "m" in timeframe:
         frequencyType = "minute"
         frequency = int(timeframe.replace("m",""))
