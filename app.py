@@ -234,8 +234,8 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
     elif "h" in selected_timeframe:
         frequencyType = "minute"
         frequency = np.round(int(selected_timeframe.replace("h","")) * 60, 0)
-        periodType = "month"
-        period = 2
+        periodType = "day"
+        period = 10
     elif "D" in selected_timeframe:
         frequencyType = "daily"
         frequency = 1
