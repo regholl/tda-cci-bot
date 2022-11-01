@@ -60,8 +60,8 @@ def serve_layout():
         id = "main_page",
         children = [
             dcc.Location(
-                id = 'url', 
-                pathname = ""
+                id = 'url',
+                refresh = False
             ),
             dbc.NavbarSimple(
                 children = [
