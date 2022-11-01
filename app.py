@@ -131,14 +131,17 @@ def update_ticker(selected_ticker):
 
 @app.callback(
     Output(component_id='ticker_dropdown', component_property='options'),
-    Input(component_id='watchlist_dropdown', component_property='value'),
+    [Input(component_id='watchlist_dropdown', component_property='value'),
+    Input(component_id='ticker_dropdown', component_property='value')],
     prevent_initial_callbacks = False
 )
-def update_watchlist(selected_watchlist):
+def update_watchlist(selected_watchlist, selected_ticker):
     deta = connect_db()
     db_config = deta.Base("db_settings")
     db_config.update({"value": selected_watchlist}, key="watchlist")
     symbols = get_watchlist_tda(name=selected_watchlist)
+    if selected_ticker not in symbols:
+        symbols.append(selected_ticker)
     return symbols
 
 # Callback function for shares on home.py
