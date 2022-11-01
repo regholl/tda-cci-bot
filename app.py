@@ -138,7 +138,7 @@ def update_watchlist(selected_watchlist):
     deta = connect_db()
     db_config = deta.Base("db_settings")
     db_config.update({"value": selected_watchlist}, key="watchlist")
-    symbols = get_watchlist_tda()
+    symbols = get_watchlist_tda(name=selected_watchlist)
     return symbols
 
 # Callback function for shares on home.py

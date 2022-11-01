@@ -63,7 +63,7 @@ def serve_home():
                                 value = timeframe
                             )
                         ],
-                        width = {"size": 2, 'offset': 0}
+                        width = {"size": 2, 'offset': 1}
                     ),
                     dbc.Col(
                         children = [
