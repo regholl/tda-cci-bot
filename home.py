@@ -13,13 +13,14 @@ def serve_home():
 
     deta = connect_db()
     db_settings = deta.Base("db_settings")
-    test = db_settings.get("cciLength")
+    test = db_settings.get("watchlist")
     if not test:
         create_database(db_settings, name="settings")
         time.sleep(2)
         deta = connect_db()
         db_settings = deta.Base("db_settings")
     ticker = db_settings.get("ticker")['value']
+    watchlist = db_settings.get("watchlist")['value']
     timeframe = db_settings.get("timeframe")['value']
     shares = db_settings.get("shares")['value']
     cciLength = db_settings.get("cciLength")['value']
@@ -35,6 +36,10 @@ def serve_home():
         on_off = "On"
     else:
         on_off = "Off"
+
+    # Get names
+
+    names = get_watchlist_tda(result="names")
 
     # Get tickers
 
@@ -58,7 +63,7 @@ def serve_home():
                                 value = timeframe
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
                     ),
                     dbc.Col(
                         children = [
@@ -69,7 +74,18 @@ def serve_home():
                                 value = ticker
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
+                    ),
+                    dbc.Col(
+                        children = [
+                            html.Label("Watchlist"),
+                            dcc.Dropdown(
+                                id = "watchlist_dropdown",
+                                options = names,
+                                value = watchlist
+                            )
+                        ],
+                        width = {"size": 2, 'offset': 0}
                     ),
                     dbc.Col(
                         children = [
@@ -82,7 +98,7 @@ def serve_home():
                                 max = 99999
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
                     ),
                     dbc.Col(
                         children = [
@@ -94,7 +110,7 @@ def serve_home():
                                 inline = False
                             )
                         ],
-                        width = {"size": 2, 'offset': 1}
+                        width = {"size": 2, 'offset': 0}
                     )
                 ]
             ),

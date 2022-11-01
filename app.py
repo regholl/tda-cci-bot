@@ -101,6 +101,59 @@ def display_page(pathname):
     else:
         return "Error"
 
+# Callback function for timeframe on home.py
+
+@app.callback(
+    Output(component_id='timeframe_dropdown', component_property='value'),
+    Input(component_id='timeframe_dropdown', component_property='value'),
+    prevent_initial_callbacks = False
+)
+def update_timeframe(selected_timeframe):
+    deta = connect_db()
+    db_config = deta.Base("db_settings")
+    db_config.update({"value": selected_timeframe}, key="timeframe")
+    raise exceptions.PreventUpdate
+
+# Callback function for ticker on home.py
+
+@app.callback(
+    Output(component_id='ticker_dropdown', component_property='value'),
+    Input(component_id='ticker_dropdown', component_property='value'),
+    prevent_initial_callbacks = False
+)
+def update_ticker(selected_ticker):
+    deta = connect_db()
+    db_config = deta.Base("db_settings")
+    db_config.update({"value": selected_ticker}, key="ticker")
+    raise exceptions.PreventUpdate
+
+# Callback function for watchlist on home.py
+
+@app.callback(
+    Output(component_id='ticker_dropdown', component_property='options'),
+    Input(component_id='watchlist_dropdown', component_property='value'),
+    prevent_initial_callbacks = False
+)
+def update_watchlist(selected_watchlist):
+    deta = connect_db()
+    db_config = deta.Base("db_settings")
+    db_config.update({"value": selected_watchlist}, key="watchlist")
+    symbols = get_watchlist_tda()
+    return symbols
+
+# Callback function for shares on home.py
+
+@app.callback(
+    Output(component_id='shares_input', component_property='value'),
+    Input(component_id='shares_input', component_property='value'),
+    prevent_initial_callbacks = False
+)
+def update_shares(selected_shares):
+    deta = connect_db()
+    db_config = deta.Base("db_settings")
+    db_config.update({"value": selected_shares}, key="shares")
+    raise exceptions.PreventUpdate
+
 # Callback function for on/off on home.py
 
 @app.callback(
@@ -118,45 +171,6 @@ def update_onoff(selected_onoff):
     else:
         print("Error: Bot neither on nor off")
     db_config.update({"value": bot_on}, key="BOT_ON")
-    raise exceptions.PreventUpdate
-
-# Callback function for shares on home.py
-
-@app.callback(
-    Output(component_id='shares_input', component_property='value'),
-    Input(component_id='shares_input', component_property='value'),
-    prevent_initial_callbacks = False
-)
-def update_shares(selected_shares):
-    deta = connect_db()
-    db_config = deta.Base("db_settings")
-    db_config.update({"value": selected_shares}, key="shares")
-    raise exceptions.PreventUpdate
-
-# Callback function for ticker on home.py
-
-@app.callback(
-    Output(component_id='ticker_dropdown', component_property='value'),
-    Input(component_id='ticker_dropdown', component_property='value'),
-    prevent_initial_callbacks = False
-)
-def update_ticker(selected_ticker):
-    deta = connect_db()
-    db_config = deta.Base("db_settings")
-    db_config.update({"value": selected_ticker}, key="ticker")
-    raise exceptions.PreventUpdate
-
-# Callback function for timeframe on home.py
-
-@app.callback(
-    Output(component_id='timeframe_dropdown', component_property='value'),
-    Input(component_id='timeframe_dropdown', component_property='value'),
-    prevent_initial_callbacks = False
-)
-def update_timeframe(selected_timeframe):
-    deta = connect_db()
-    db_config = deta.Base("db_settings")
-    db_config.update({"value": selected_timeframe}, key="timeframe")
     raise exceptions.PreventUpdate
 
 # Callback function for cciLength on home.py

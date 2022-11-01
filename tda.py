@@ -414,12 +414,16 @@ def tda_submit_order(instruction, quantity, symbol, assetType="EQUITY", orderTyp
         print(f"{r.status_code}: {json.loads(r.content)}")
         return json.loads(r.content)
 
-def get_watchlist_tda(name="default"):
+def get_watchlist_tda(name="default", result="symbols"):
     auth = tda_authenticate()
     url = f"{tda_base}/v1/accounts/{auth['account_nbr']}/watchlists"
     r = requests.get(url, headers = auth['headers'])
     resp = json.loads(r.content)
-    wl = [item for item in resp if item['name'] == name][0]
-    items = wl['watchlistItems']
-    symbols = [item['instrument']['symbol'] for item in items]
-    return symbols
+    names = [item['name'] for item in resp]
+    if result == "names":
+        return names
+    elif result == "symbols":
+        wl = [item for item in resp if item['name'] == name][0]
+        items = wl['watchlistItems']
+        symbols = [item['instrument']['symbol'] for item in items]
+        return symbols
