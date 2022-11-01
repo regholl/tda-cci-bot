@@ -226,6 +226,7 @@ def update_over_bought(selected_over_bought):
 def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLength, over_sold, over_bought):
     # deta = connect_db()
     # db_config = deta.Base("db_config")
+    useEpoch = False
     if "m" in selected_timeframe:
         frequencyType = "minute"
         frequency = int(selected_timeframe.replace("m",""))
@@ -234,14 +235,19 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
     elif "h" in selected_timeframe:
         frequencyType = "minute"
         frequency = np.round(int(selected_timeframe.replace("h","")) * 60, 0)
-        periodType = "day"
-        period = 10
+        if frequency < 3 * 60:
+            periodType = "day"
+            period = 10
+        else:
+            periodType = None
+            period = None
+            useEpoch = True
     elif "D" in selected_timeframe:
         frequencyType = "daily"
         frequency = 1
         periodType = "month"
         period = 3
-    data = get_data_tda(ticker=selected_ticker, periodType = periodType, period = period, frequencyType = frequencyType, frequency = frequency)
+    data = get_data_tda(ticker=selected_ticker, periodType = periodType, period = period, frequencyType = frequencyType, frequency = frequency, useEpoch=useEpoch)
     df = pd.DataFrame()
     if frequencyType == "minute":
         time_format = "%m/%d %H:%M"

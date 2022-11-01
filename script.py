@@ -63,8 +63,13 @@ def run():
     elif "h" in timeframe:
         frequencyType = "minute"
         frequency = np.round(int(timeframe.replace("h","")) * 60, 0)
-        periodType = "day"
-        period = 10
+        if frequency < 3 * 60:
+            periodType = "day"
+            period = 10
+        else:
+            periodType = None
+            period = None
+            useEpoch = True
     elif "D" in timeframe:
         frequencyType = "daily"
         frequency = 1
@@ -75,7 +80,7 @@ def run():
 
     # Get data
 
-    data = get_data_tda(ticker = ticker, periodType = periodType, period = period, frequencyType = frequencyType, frequency = frequency)
+    data = get_data_tda(ticker=ticker, periodType=periodType, period=period, frequencyType=frequencyType, frequency=frequency, useEpoch=useEpoch)
     df = pd.DataFrame()
     if frequencyType == "minute":
         time_format = "%m/%d %H:%M"

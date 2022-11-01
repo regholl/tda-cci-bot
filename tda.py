@@ -71,7 +71,7 @@ def get_quote_tda(symbol="SPY"):
     resp = json.loads(req.content)
     return resp
 
-def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minute", frequency=30, extended_hours=False):
+def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minute", frequency=30, extended_hours=False, useEpoch=False):
     periodTypes = ["day", "month", "year", "ytd"]
     period_day = [1, 2, 3, 4, 5, 10]
     period_month = [1, 2, 3, 6]
@@ -102,14 +102,13 @@ def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minut
                 break
             i += 1
     # ext = False
-    useEpoch = False
     now = dt.datetime.now()
     epoch = dt.datetime.utcfromtimestamp(0)
     # now = dt.datetime.now(tz=utc)
     # epoch = pd.Timestamp(dt.datetime.utcfromtimestamp(0),tz=utc)
     epoch_now_diff = now - epoch
     epoch_to_now = epoch_now_diff.days * 24 * 60 * 60 * 1000 + (epoch_now_diff.seconds * 1000) + (int(epoch_now_diff.microseconds / 1000))
-    then = now - dt.timedelta(days=1)
+    then = now - dt.timedelta(days=60)
     epoch_then_diff = then - epoch
     epoch_to_then = epoch_then_diff.days * 24 * 60 * 60 * 1000 + (epoch_then_diff.seconds * 1000) + (int(epoch_then_diff.microseconds / 1000))
     startDate = epoch_to_then
@@ -117,7 +116,7 @@ def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minut
     auth = tda_authenticate()
     data_url = f"{tda_base}/v1/marketdata/{ticker}/pricehistory?apikey={auth['api_key']}&frequencyType={frequencyType}&frequency={frequency}&needExtendedHoursData={extended_hours}&endDate={endDate}"
     if useEpoch:
-        data_url = data_url + f"&startDate={startDate}"
+        data_url = data_url + f"&startDate={startDate}&endDate={endDate}"
     else:
         data_url = data_url + f"&periodType={periodType}&period={period}"
     req = requests.get(data_url, headers = auth["headers"])
