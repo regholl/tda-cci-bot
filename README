@@ -4,16 +4,16 @@ This bot is designed to run a trading strategy on TD Ameritrade, and control set
 
 File Structure:
 
-apps
-    __init__.py
-    home.py
-    orders.py
-    positions.py
 .env
 .gitignore
 app.py
 db.py
+fly.toml
+home.py
+orders.py
+positions.py
 Procfile
+Procfile2
 README
 requirements.txt
 runtime.txt

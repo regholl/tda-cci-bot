@@ -54,10 +54,8 @@ def serve_home():
                             html.Label("Timeframe"),
                             dcc.Dropdown(
                                 id = "timeframe_dropdown",
-                                options = ["10m", "1h", "4h", "1D"],
-                                value = timeframe,
-                                persistence = True,
-                                persistence_type = "local"
+                                options = ["1m", "10m", "1h", "4h", "1D"],
+                                value = timeframe
                             )
                         ],
                         width = {"size": 2, 'offset': 1}
@@ -68,9 +66,7 @@ def serve_home():
                             dcc.Dropdown(
                                 id = "ticker_dropdown",
                                 options = symbols,
-                                value = ticker,
-                                persistence = True,
-                                persistence_type = "local"
+                                value = ticker
                             )
                         ],
                         width = {"size": 2, 'offset': 1}
@@ -95,9 +91,7 @@ def serve_home():
                                 id = "on_off",
                                 options = ['On', 'Off'], 
                                 value = on_off, 
-                                inline = False,
-                                persistence = True,
-                                persistence_type = "local"
+                                inline = False
                             )
                         ],
                         width = {"size": 2, 'offset': 1}

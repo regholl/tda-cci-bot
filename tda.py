@@ -376,7 +376,7 @@ def get_chain_tda(ticker):
     }
     return result
 
-def tda_submit_order(instruction, quantity, symbol, assetType="OPTION", orderType="MARKET", limit_price=0):
+def tda_submit_order(instruction, quantity, symbol, assetType="EQUITY", orderType="MARKET", limit_price=0):
     auth = tda_authenticate()
     tda_orders_url = '{}/v1/accounts/{}/orders'.format(tda_base, auth['account_nbr'])
     if "_" not in symbol:

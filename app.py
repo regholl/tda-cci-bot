@@ -110,7 +110,7 @@ def display_page(pathname):
 @app.callback(
     Output(component_id='on_off', component_property='value'),
     Input(component_id='on_off', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_onoff(selected_onoff):
     deta = connect_db()
@@ -129,7 +129,7 @@ def update_onoff(selected_onoff):
 @app.callback(
     Output(component_id='shares_input', component_property='value'),
     Input(component_id='shares_input', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_shares(selected_shares):
     deta = connect_db()
@@ -142,7 +142,7 @@ def update_shares(selected_shares):
 @app.callback(
     Output(component_id='ticker_dropdown', component_property='value'),
     Input(component_id='ticker_dropdown', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_ticker(selected_ticker):
     deta = connect_db()
@@ -155,7 +155,7 @@ def update_ticker(selected_ticker):
 @app.callback(
     Output(component_id='timeframe_dropdown', component_property='value'),
     Input(component_id='timeframe_dropdown', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_timeframe(selected_timeframe):
     deta = connect_db()
@@ -168,7 +168,7 @@ def update_timeframe(selected_timeframe):
 @app.callback(
     Output(component_id='cciLength', component_property='value'),
     Input(component_id='cciLength', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_cciLength(selected_cciLength):
     deta = connect_db()
@@ -181,7 +181,7 @@ def update_cciLength(selected_cciLength):
 @app.callback(
     Output(component_id='cciAvgLength', component_property='value'),
     Input(component_id='cciAvgLength', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_cciAvgLength(selected_cciAvgLength):
     deta = connect_db()
@@ -194,7 +194,7 @@ def update_cciAvgLength(selected_cciAvgLength):
 @app.callback(
     Output(component_id='over_sold', component_property='value'),
     Input(component_id='over_sold', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_over_sold(selected_over_sold):
     deta = connect_db()
@@ -207,7 +207,7 @@ def update_over_sold(selected_over_sold):
 @app.callback(
     Output(component_id='over_bought', component_property='value'),
     Input(component_id='over_bought', component_property='value'),
-    prevent_initial_callbacks = True
+    prevent_initial_callbacks = False
 )
 def update_over_bought(selected_over_bought):
     deta = connect_db()
@@ -238,13 +238,13 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
     elif "h" in selected_timeframe:
         frequencyType = "minute"
         frequency = np.round(int(selected_timeframe.replace("h","")) * 60, 0)
-        periodType = "day"
-        period = 10
+        periodType = "month"
+        period = 2
     elif "D" in selected_timeframe:
         frequencyType = "daily"
         frequency = 1
         periodType = "month"
-        period = 1
+        period = 3
     data = get_data_tda(ticker=selected_ticker, periodType = periodType, period = period, frequencyType = frequencyType, frequency = frequency)
     df = pd.DataFrame()
     if frequencyType == "minute":

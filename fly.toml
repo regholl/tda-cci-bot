@@ -1,6 +1,6 @@
-# fly.toml file generated for tda-cci-test2 on 2022-10-31T14:53:33-05:00
+# fly.toml file generated for tda-cci-test on 2022-10-31T15:16:25-05:00
 
-app = "tda-cci-test2"
+app = "tda-cci-test"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
