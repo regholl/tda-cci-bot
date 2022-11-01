@@ -374,4 +374,4 @@ def update_candlestick(selected_timeframe, selected_ticker, cciLength, cciAvgLen
 # Run the app
 
 if __name__ == '__main__':
-    app.run_server(port=8080, debug=False)
+    app.run(port=8080)
