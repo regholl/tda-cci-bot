@@ -4,23 +4,23 @@ This bot is designed to run a trading strategy on TD Ameritrade, and control set
 
 File Structure:
 
-.env
-.gitignore
-app.py
-db.py
-fly.toml
-home.py
-orders.py
-positions.py
-Procfile
-Procfile2
-README
-requirements.txt
-runtime.txt
-script.py
+.env = Contains all your sensitive information; don't share this with others
+.gitignore = Designates which file types do not get uploaded into the cloud and/or on Github
+app.py = Defines the look and functionality of your webpage
+db.py = Contains functions interact with Deta
+fly.toml = Cloud configuration settings for fly.io
+home.py = The "Home" page of your app
+orders.py = The "Orders" page of your webpage
+positions.py = The "Positions" page of your webpage
+Procfile = Defines the type of application (web), the main file name (app.py), and how to run it (server)
+Procfile2 = Defines the type of application (worker), the main file name (script.py), and how to run it (python)
+README = A description of your program
+requirements.txt = All the Python libraries/packages/add-ons that must be installed on a computer for this program to run
+runtime.txt = Designates the programming language (Python) and version (3.9.12) to use
+script.py = The ThinkScript code converted to Python; this is your bot
 TDA_CCI_Bot.ipynb (too big)
-tda.py
-ThinkScript_CCI.txt
+tda.py = All the functions that connect to TDA API
+ThinkScript_CCI.txt = Your ThinkScript code
 
 Deta Bases:
 
