@@ -64,14 +64,14 @@ def tda_authenticate():
     }
     return auth_dict
 
-def get_quote_tda(symbol="SPY"):
+def get_quote_tda(symbol="VORB"):
     auth = tda_authenticate()
     quote_url = f"{tda_base}/v1/marketdata/quotes?apikey={auth['api_key']}&symbol={symbol}"
     req = requests.get(quote_url, headers = auth["headers"])
     resp = json.loads(req.content)
     return resp
 
-def get_data_tda(ticker="SPY", periodType="day", period=10, frequencyType="minute", frequency=30, extended_hours=False, useEpoch=False):
+def get_data_tda(ticker="VORB", periodType="day", period=10, frequencyType="minute", frequency=30, extended_hours=False, useEpoch=False):
     periodTypes = ["day", "month", "year", "ytd"]
     period_day = [1, 2, 3, 4, 5, 10]
     period_month = [1, 2, 3, 6]
