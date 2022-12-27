@@ -22,12 +22,12 @@ def create_database(db_info, name="config", symbols=None):
     config_values = [os.getenv(key) for key in config_keys]
     config_keys = config_keys + ["TDA_ACCESS", "TDA_LAST_ACCESS", "TDA_LAST_REFRESH", "TDA_ACCESS_LIMIT", "BOT_ON"]
     config_values = config_values + ["asfdasdf", "8/8/2022 20:54:30", "8/18/2022 19:08:26", "30", True]
-    user_keys = ["josh", "tyler"]
+    user_keys = ["reggie", "holland"]
     user_values = ["cci", "tda"]
     settings_keys = ["timeframe", "ticker", "watchlist", "shares", "cciLength", "cciAvgLength", "over_sold", "over_bought"]
-    settings_values = ["10m", "SPY", "default", 1, 14, 9, -100, 100]
+    settings_values = ["10m", "M", "default", 1, 14, 9, -100, 100]
     if symbols == None:
-        symbols = ["SPY", "QQQ"]
+        symbols = ["M", "VORB"]
     ticker_keys = list(range(len(symbols)))
     if name == "config":
         for i in range(len(user_keys)):
